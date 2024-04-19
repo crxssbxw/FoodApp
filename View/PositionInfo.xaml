@@ -1,0 +1,95 @@
+﻿<Window x:Class="FoodApp.View.PositionInfo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FoodApp.View"
+        mc:Ignorable="d"
+        Title="{Binding Name}" Height="350" Width="500" 
+        ResizeMode="CanMinimize" 
+        WindowStartupLocation="CenterOwner">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Border 
+            Background="Red">
+            <StackPanel
+                Margin="5"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center">
+                <TextBlock
+                    Margin="5"
+                    Text="{Binding Path=Name}"
+                    TextWrapping="Wrap"
+                    FontSize="20"
+                    Foreground="White"
+                    VerticalAlignment="Top"
+                    TextAlignment="Center"/>
+                <Border
+                    Margin="10"
+                    Background="Wheat"
+                    BorderBrush="LightGray"
+                    BorderThickness="2"
+                    CornerRadius="20"
+                    Height="140"
+                    MinWidth="120"
+                    MaxWidth="140"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center">
+                    <Image 
+                        Margin="10"
+                        Source="{Binding Path=ImagePath}"/>
+                </Border>
+            </StackPanel>
+        </Border>
+
+        <StackPanel 
+            Grid.Column="1"
+            VerticalAlignment="Center"
+            Margin="10">
+            <StackPanel.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="FontSize" Value="18"/>
+                </Style>
+            </StackPanel.Resources>
+
+            <TextBlock
+                Text="Цена:"/>
+            <TextBlock
+                Background="LightGray"
+                Text="{Binding Cost}"/>
+
+            <TextBlock
+                Text="Тип:"/>
+            <TextBlock
+                Background="LightGray"
+                Text="{Binding Type}"/>
+            
+            <TextBlock
+                Text="Масса:"/>
+            <TextBlock
+                Background="LightGray"
+                Text="{Binding Mass}"/>
+            
+            <TextBlock
+                Text="Содержание КБЖУ на 100 грамм:"/>
+            <StackPanel 
+                Orientation="Horizontal"
+                Background="LightGray">
+                <TextBlock>
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}{0}, {1}, {2}, {3}">
+                            <Binding Path="Calories"/>
+                            <Binding Path="Proteins"/>
+                            <Binding Path="Fats"/>
+                            <Binding Path="Carbohydrates"/>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

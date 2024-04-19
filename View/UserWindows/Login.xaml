@@ -1,0 +1,108 @@
+﻿<Window x:Class="FoodApp.View.UserWindows.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FoodApp.View.UserWindows"
+        mc:Ignorable="d"
+        Title="Login" Height="350" Width="450"
+        ResizeMode="CanMinimize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+
+        <DockPanel
+            Background="Red">
+            <TextBlock 
+                Foreground="White"
+                FontSize="20"
+                HorizontalAlignment="Center"
+                x:Name="WinTitle"/>
+        </DockPanel>
+
+        <StackPanel 
+            Grid.Row="1"
+            Margin="10"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center">
+            <StackPanel.Resources>
+                <Style TargetType="Label">
+                    <Setter Property="FontSize" Value="16"/>
+                </Style>
+                <Style TargetType="TextBox">
+                    <Setter Property="FontSize" Value="16"/>
+                </Style>
+                <Style TargetType="PasswordBox">
+                    <Setter Property="FontSize" Value="16"/>
+                </Style>
+            </StackPanel.Resources>
+            <StackPanel x:Name="LoginPanel">
+                <Label Content="Логин:"/>
+                <TextBox 
+                    x:Name="LoginBox"
+                    ToolTip="Макс. длина - 20 символов"
+                    MaxLength="20"
+                    MinWidth="200"/>
+            </StackPanel>
+            <StackPanel x:Name="PasswordPanel">
+                <Label Content="Пароль:"/>
+                <PasswordBox
+                    x:Name="OriginalPassword"
+                    ToolTip="Макс. длина - 14 символов"
+                    MinWidth="200"
+                    PasswordChar="*"
+                    MaxLength="14"/>
+            </StackPanel>
+            <StackPanel 
+                Visibility="Collapsed"
+                x:Name="RepeatPasswordPanel">
+                <Label Content="Повторите пароль:"/>
+                <PasswordBox
+                    x:Name="RepeatedPassword"
+                    ToolTip="Пароли должны совпадать"
+                    PasswordChar="*"
+                    MaxLength="14"/>
+            </StackPanel>
+            <TextBlock
+                x:Name="Link">
+                <Hyperlink
+                    ToolTip="Зарегистрируйтесь!"
+                    Click="Hyperlink_RequestNavigate">
+                    Ещё не зарегистрированы?
+                </Hyperlink>
+            </TextBlock>
+            <TextBlock
+                x:Name="ErrorLog"
+                Foreground="OrangeRed"/>
+        </StackPanel>
+
+        <StackPanel 
+            Margin="10"
+            Grid.Row="2"
+            Orientation="Horizontal"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center">
+            
+            <Button
+                Visibility="Collapsed"
+                x:Name="Registration"
+                Margin="10 0"
+                Width="140"
+                FontSize="16"
+                Content="Регистрация"
+                Click="Registration_Click"/>
+
+            <Button 
+                x:Name="SignIn"
+                Margin="10 0"
+                Width="70"
+                FontSize="16"
+                Content="Вход"
+                IsDefault="True"
+                Click="SignIn_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

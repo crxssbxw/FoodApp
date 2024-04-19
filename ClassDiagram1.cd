@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="FoodApp.Model.DPO.PositionDPO">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAABJAAAAQQAgAAAAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>Model\DPO\PositionDPO.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="FoodApp.Model.Order">
+    <Position X="9.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAAAAAAAAAhAAAAAAgAAAAAAAQAAAAAAAAAAAE=</HashCode>
+      <FileName>Model\Order.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoodApp.Model.Orders_Positions">
+    <Position X="7.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAEAAAAAAAAAAAAgAAAAAAIAAACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Orders_Positions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoodApp.Model.Position">
+    <Position X="6" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAECAAAAAAAAAAAAAAAAAJQAAAAAABAAAQAAAASEAAE=</HashCode>
+      <FileName>Model\Position.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoodApp.Model.User">
+    <Position X="11.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAECAAAAACAAAAAAAAAAAAQAAAAAAAACAAAQIAAAAAA=</HashCode>
+      <FileName>Model\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FoodApp.ModuleDB.ApplicationContext">
+    <Position X="9.25" Y="5.75" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAEAACAAAQAAAAggAAAACAAAEAAAAAAAAAACAAAAAAE=</HashCode>
+      <FileName>ModuleDB\ApplicationContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

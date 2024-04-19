@@ -1,0 +1,60 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+	<UICulture>ru-RU</UICulture>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="admin.png" />
+    <None Remove="checkout.png" />
+    <None Remove="enter.png" />
+    <None Remove="Images\cheeseburger.png" />
+    <None Remove="Images\donut.png" />
+    <None Remove="Images\drink.png" />
+    <None Remove="Images\french_fries.png" />
+    <None Remove="Images\kebab.png" />
+    <None Remove="Images\nuggets.png" />
+    <None Remove="Images\salad.png" />
+    <None Remove="Images\sauce.png" />
+    <None Remove="shopping_basket.png" />
+    <None Remove="trash.png" />
+    <None Remove="user.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="admin.png" />
+    <Resource Include="checkout.png" />
+    <Resource Include="enter.png" />
+    <Resource Include="Images\cheeseburger.png" />
+    <Resource Include="Images\donut.png" />
+    <Resource Include="Images\drink.png" />
+    <Resource Include="Images\french_fries.png" />
+    <Resource Include="Images\kebab.png" />
+    <Resource Include="Images\nuggets.png" />
+    <Resource Include="Images\salad.png" />
+    <Resource Include="Images\sauce.png" />
+    <Resource Include="shopping_basket.png" />
+    <Resource Include="trash.png" />
+    <Resource Include="user.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="ModuleDB\connectionConfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

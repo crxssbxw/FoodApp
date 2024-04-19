@@ -1,0 +1,349 @@
+﻿<Window x:Class="FoodApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:model="clr-namespace:FoodApp.Model"
+        xmlns:images="clr-namespace:FoodApp"
+        xmlns:local="clr-namespace:FoodApp"
+        mc:Ignorable="d"
+        Title="FoodApp" MinHeight="500" MinWidth="800">
+
+    <Window.Resources>
+        <DataTemplate x:Key="listTemplate">
+            <Border
+                MaxWidth="150"
+                Height="220"
+                BorderBrush="LightGray"
+                BorderThickness="2"
+                CornerRadius="10">
+                <StackPanel 
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Stretch"
+                    Margin="10">
+                    <DockPanel
+                        Height="50">
+                        <TextBlock 
+                            Text="{Binding Path=Name}"
+                            TextWrapping="Wrap"
+                            VerticalAlignment="Center"
+                            TextAlignment="Center"
+                            FontSize="16" 
+                            HorizontalAlignment="Center"/>
+                    </DockPanel>
+                    <Border
+                        MinWidth="120"
+                        CornerRadius="15"
+                        Background="Wheat"
+                        VerticalAlignment="Center">
+                        <Image 
+                            MaxHeight="80"
+                            MaxWidth="80"
+                            Margin="10"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Source="{Binding Path=ImagePath}"/>
+                    </Border>
+                    <DockPanel 
+                        VerticalAlignment="Bottom">
+                        <Button 
+                            MinWidth="120"
+                            Padding="5"
+                            Margin="0 5"
+                            FontSize="16"
+                            HorizontalAlignment="Stretch"
+                            Click="Add_Button_Click"
+                            VerticalAlignment="Center"
+                            BorderThickness="0">
+                            <Button.Content>
+                                <TextBlock
+                                    Text="{Binding Path=Cost, StringFormat=В корзину {0}₽}"/>
+                            </Button.Content>
+                        </Button>
+                    </DockPanel>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+        <ItemsPanelTemplate x:Key="listPanelTemplate">
+            <WrapPanel/>
+        </ItemsPanelTemplate>
+
+        <DataTemplate x:Key="basketTemplate">
+            <DockPanel Margin="10" Width="auto" HorizontalAlignment="Stretch">
+                <StackPanel>
+                    <Label
+                        Content="{Binding Path=Name}"
+                        FontSize="20"
+                        HorizontalAlignment="Center"/>
+                    <TextBlock 
+                        Margin="10 0 0 0"
+                        Text="{Binding Path=TotalCost, StringFormat=0 ₽}"
+                        FontSize="17"/>
+                </StackPanel>
+                
+                <Border HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Height="25">
+                        <StackPanel.Resources>
+                            <Style TargetType="Button">
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="Background" Value="#0000"/>
+                                <Setter Property="FontSize" Value="16"/>
+                                <Setter Property="Width" Value="16"/>
+                            </Style>
+
+                            <Style TargetType="TextBox">
+                                <Setter Property="FontSize" Value="16"/>
+                            </Style>
+                        </StackPanel.Resources>
+
+
+                        <Button 
+                            Content="+" 
+                            Click="Add_Button_Click"
+                            Foreground="Red"
+                            FontSize="20"
+                            FontWeight="UltraBold"/>
+                        <TextBlock
+                            Text="{Binding Path=Count}"
+                            VerticalAlignment="Center"
+                            TextAlignment="Center"
+                            MinWidth="20"
+                            FontSize="20"/>
+                        <Button 
+                            Content="-" 
+                            Click="Remove_Button_Click"
+                            Foreground="Red"
+                            FontSize="20"
+                            FontWeight="UltraBold"/>
+                    </StackPanel>
+                </Border>
+
+            </DockPanel>
+        </DataTemplate>
+        <ItemsPanelTemplate x:Key="basketPanelTemplate">
+            <StackPanel/>
+        </ItemsPanelTemplate>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*" MaxHeight="90" MinHeight="50"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0" Background="Red" HorizontalAlignment="Stretch">
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right ">
+                <Button
+                    x:Name="LogIn"
+                    Width="60"
+                    Margin="10"
+                    Click="LogIn_Click"
+                    Background="Transparent"
+                    BorderThickness="0">
+                    <Image Source="/enter.png" Width="50" Height="auto"/>
+                </Button>
+
+                <Button
+                    x:Name="Cabinet"
+                    Width="60"
+                    Margin="10"
+                    Click="Cabinet_Click"
+                    Background="Transparent"
+                    BorderThickness="0">
+                        <Image Source="/user.png" Width="50" Height="auto"/>
+                </Button>
+
+                <Button 
+                    x:Name="AdminPanel"  
+                    Width="60"
+                    Margin="10"  
+                    Click="AdminPanel_Click"
+                    Background="Transparent"
+                    BorderThickness="0">
+                    <Button.Content>
+                        <Image Source="/admin.png" Width="50" Height="auto"/>
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+
+        </DockPanel>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.3*" MinWidth="230"/>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" MinWidth="400"/>
+            </Grid.ColumnDefinitions>
+
+            <GridSplitter Grid.Column="1" 
+                          Width="3" ResizeDirection="Auto"
+                          ResizeBehavior="PreviousAndNext"/>
+
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+                    <Image 
+                        Source="/shopping_basket.png" 
+                        MaxWidth="40"
+                        Margin="5 0"/>
+                    <Label 
+                        FontFamily="Arial Black"
+                        FontSize="20"
+                        Content="КОРЗИНА" 
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        VerticalAlignment="Center"
+                        Margin="1"/>
+                </StackPanel>
+
+                <ListBox
+                    HorizontalContentAlignment="Stretch"
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    x:Name="basketList"
+                    ItemTemplate="{StaticResource basketTemplate}"
+                    ItemsPanel="{StaticResource basketPanelTemplate}"
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                    BorderThickness="0">
+                </ListBox>
+
+                <StackPanel 
+                    Grid.Column="0" 
+                    Grid.Row="2"
+                    VerticalAlignment="Bottom" 
+                    MinHeight="80"
+                    Background="LightGray"
+                    DataContext="{Binding Path=Basket}">
+
+                    <StackPanel.Resources>
+                        <Style TargetType="DockPanel">
+                            <Setter Property="Margin" Value="10 0"/>
+                        </Style>
+                    </StackPanel.Resources>
+
+                    <DockPanel HorizontalAlignment="Stretch">
+                        <TextBlock
+                            FontSize="16"
+                            Text="Количество позиций"/>
+                        <TextBlock 
+                            HorizontalAlignment="Right"
+                            Text="{Binding Path=Count}"
+                            FontSize="16"/>
+                    </DockPanel>
+
+                    <DockPanel HorizontalAlignment="Stretch">
+                        <TextBlock
+                            FontSize="16"
+                            Text="На сумму"/>
+                        <TextBlock 
+                            HorizontalAlignment="Right"
+                            Text="{Binding Path=TotalCost, StringFormat=0 ₽}"
+                            FontSize="16"/>
+                    </DockPanel>
+
+                    <Expander x:Name="OrderExpander">
+                        <Expander.Header>
+                            <Label Content="Расчёт КБЖУ" FontSize="14"/>
+                        </Expander.Header>
+
+                        <StackPanel Margin="10 0">
+                            <StackPanel.Resources>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="FontSize" Value="14"/>
+                                </Style>
+                            </StackPanel.Resources>
+                            <TextBlock Text="{Binding StringFormat=Количество калорий: \{0:f2\}, Path=TotalCalories}"/>
+                            <TextBlock Text="{Binding StringFormat=Количество белков: \{0:f2\}, Path=TotalProteins}"/>
+                            <TextBlock Text="{Binding StringFormat=Количество жиров: \{0:f2\}, Path=TotalFats}"/>
+                            <TextBlock Text="{Binding StringFormat=Количество углеводов: \{0:f2\}, Path=TotalCarbohydrates}"/>
+                        </StackPanel>
+                    </Expander>
+
+                    <WrapPanel HorizontalAlignment="Center">
+                        <Button 
+                            x:Name="BasketClear"
+                            Margin="10 5" 
+                            Height="40"
+                            FontSize="14"
+                            Width="40"
+                            Foreground="White"
+                            Click="BasketClear_Click"
+                            Background="Transparent"
+                            BorderThickness="0">
+                            <Button.Content>
+                                <Image 
+                                    Source="/trash.png"
+                                    MaxWidth="30"/>
+                            </Button.Content>
+                        </Button>
+                        <Button 
+                            HorizontalAlignment="Right"
+                            x:Name="OrderCreate"
+                            Margin="10 5" 
+                            FontSize="14"
+                            Height="40"
+                            Width="40"
+                            BorderThickness="0"
+                            Background="Transparent"
+                            Click="OrderCreate_Click">
+                            <Button.Content>
+                                <Image 
+                                    Source="/checkout.png"
+                                    MaxWidth="30"/>
+                            </Button.Content>
+                        </Button>
+                    </WrapPanel>
+                </StackPanel>
+
+            </Grid>
+
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Label 
+                    FontFamily="Arial Black"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    FontSize="30"
+                    Content="МЕНЮ"/>
+
+                <ListBox 
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    x:Name="positionList"
+                    ItemTemplate="{StaticResource listTemplate}"
+                    ItemsPanel="{StaticResource listPanelTemplate}"
+                    BorderThickness="0"
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                    SelectionChanged="positionList_SelectionChanged">
+
+                    <ListBox.GroupStyle>
+                        <GroupStyle>
+                            <GroupStyle.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock 
+                                        Margin="10 5"
+                                        Text="{Binding Path=Name}"
+                                        FontSize="20"
+                                        FontWeight="Bold"/>
+                                </DataTemplate>
+                            </GroupStyle.HeaderTemplate>
+                        </GroupStyle>
+                    </ListBox.GroupStyle>
+                </ListBox>
+
+            </Grid>
+            
+        </Grid>
+    </Grid>
+
+</Window>

@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="FoodApp.View.AdminControls.Orders"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FoodApp.View.AdminControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="500">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="150"/>
+        </Grid.ColumnDefinitions>
+        
+        <ListView Grid.Column="0" ItemsSource="{Binding Orders}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn 
+                        Header="Id" Width="20" 
+                        DisplayMemberBinding="{Binding Id}"/>
+                    <GridViewColumn 
+                        Header="Способ получения" Width="120"
+                        DisplayMemberBinding="{Binding PackageType}"/>
+                    <GridViewColumn 
+                        Header="Клиент" Width="70"
+                        DisplayMemberBinding="{Binding UserId}"/>
+                    <GridViewColumn 
+                        Header="Итог" Width="80"
+                        DisplayMemberBinding="{Binding TotalCost}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <StackPanel Grid.Column="1" x:Name="Control" Orientation="Vertical" VerticalAlignment="Center">
+            <Button Content="Редактировать" Margin="10" IsEnabled="False"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

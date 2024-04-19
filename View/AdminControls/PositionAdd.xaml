@@ -1,0 +1,74 @@
+﻿<Window x:Class="FoodApp.View.AdminControls.PositionAdd"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FoodApp.View.AdminControls"
+        mc:Ignorable="d"
+        Title="PositionAdd" Height="450" Width="400"
+        ResizeMode="CanMinimize" WindowStartupLocation="CenterOwner"
+        SizeToContent="Height">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.3*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0.1*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.Column="0"
+                    HorizontalAlignment="Right">
+            <StackPanel.Resources>
+                <Style TargetType="Label">
+                    <Setter Property="Margin" Value="10"/>
+                </Style>
+            </StackPanel.Resources>
+            <Label Content="Название*"/>
+            <Label Content="Стоимость*"/>
+            <Label Content="Тип*"/>
+            <Label Content="Масса"/>
+            <Label Content="Калории"/>
+            <Label Content="Белки"/>
+            <Label Content="Жиры"/>
+            <Label Content="Углеводы"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <StackPanel.Resources>
+                <Style TargetType="TextBox" >
+                    <Setter Property="Margin" Value="11"/>
+                    <Setter Property="Height" Value="24"/>
+                </Style>
+
+                <Style TargetType="ComboBox" >
+                    <Setter Property="Margin" Value="11"/>
+                    <Setter Property="Height" Value="24"/>
+                </Style>
+            </StackPanel.Resources>
+
+            <TextBox 
+                Text="{Binding Name}"/>
+            <TextBox Text="{Binding Cost}"/>
+            <ComboBox x:Name="TypesBox" 
+                      Text="{Binding Type}"
+                      ItemsSource="{Binding Path=Types}"/>
+            <TextBox Text="{Binding Mass}"/>
+            <TextBox Text="{Binding Calories}"/>
+            <TextBox Text="{Binding Proteins}"/>
+            <TextBox Text="{Binding Fats}"/>
+            <TextBox Text="{Binding Carbohydrates}"/>
+        </StackPanel>
+
+        <Button 
+            x:Name="Save" Content="Сохранить" 
+            Grid.Row="1" Grid.Column="1"
+            Margin="10 5"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Right"
+            MinWidth="80" Height="30"
+            Click="Save_Click"/>
+        
+    </Grid>
+</Window>

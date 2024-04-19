@@ -1,0 +1,121 @@
+﻿<Window x:Class="FoodApp.View.OrderInfo"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FoodApp.View"
+        mc:Ignorable="d"
+        Title="OrderInfo" Height="450" Width="400"
+        ResizeMode="CanMinimize"
+        WindowStartupLocation="CenterOwner">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+
+
+        <DataTemplate x:Key="positionList">
+            <StackPanel>
+                <TextBlock Text="{Binding Path=Name}"/>
+                <TextBlock Text="{Binding Path=Count, StringFormat=Количество: {0}}"/>
+                <TextBlock Text="{Binding Path=TotalCost, StringFormat=Итоговая цена: {0}}"/>
+            </StackPanel>
+        </DataTemplate>
+        
+        
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition 
+                Height="40"/>
+            <RowDefinition/>
+            <RowDefinition
+                Height="auto"
+                MaxHeight="180"/>
+            <RowDefinition 
+                Height="60"/>
+        </Grid.RowDefinitions>
+
+        <Border Background="Red">
+            <StackPanel 
+                Orientation="Horizontal"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center">
+                <StackPanel.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="FontSize" Value="20"/>
+                    </Style>
+                </StackPanel.Resources>
+                
+                <TextBlock Text="Заказ №"/>
+                <TextBlock x:Name="OrderId"
+                           Text="{Binding Id}"/>
+            </StackPanel>
+        </Border>
+
+        <Grid Grid.Row="1">
+            <StackPanel 
+                VerticalAlignment="Center"
+                Margin="5">
+                <TextBlock 
+                    Margin="10 0"
+                    Text="Дата и Время заказа:" Background="Wheat"/>
+                <TextBlock 
+                    Margin="10 0"
+                    Text="{Binding DateTime}"/>
+                <TextBlock 
+                    Margin="10 0"
+                    Text="Тип Доставки:" Background="Wheat"/>
+                <ComboBox 
+                    Margin="10 0"
+                    x:Name="PackageTypeChoose"
+                    Text="{Binding PackageType}"/>
+                <TextBlock
+                    Margin="10 0"
+                    Text="Общая цена:" Background="Wheat"/>
+                <TextBlock 
+                    Margin="10 0"
+                    Text="{Binding TotalCost}"/>
+            </StackPanel>
+        </Grid>
+
+        <StackPanel 
+            Background="LightGray"
+            Grid.Row="2">
+            <Expander Header="Список позиций" FontSize="16">
+                <ListView
+                    MinHeight="100"
+                    MaxHeight="150"
+                    x:Name="PositionList"
+                    ItemTemplate="{StaticResource positionList}"
+                    ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+            </Expander>
+        </StackPanel>    
+            
+        <StackPanel 
+            Grid.Row="3"
+            HorizontalAlignment="Right"
+            Orientation="Horizontal">
+            <StackPanel.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="Width" Value="130"/>
+                    <Setter Property="Height" Value="30"/>
+                    <Setter Property="Margin" Value="10"/>
+                </Style>
+            </StackPanel.Resources>
+            
+            <Button
+                x:Name="Cancel"
+                Content="Отмена"
+                IsCancel="True"
+                Click="Cancel_Click"/>
+            <Button
+                x:Name="Accept"
+                Content="Принять"
+                IsDefault="True"
+                Click="Accept_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

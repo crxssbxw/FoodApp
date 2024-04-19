@@ -1,0 +1,3 @@
+{
+  "ConnectionString": "Server=.\\SQLEXPRESS;Database=FoodAppDB;Trusted_Connection=True;Trust Server Certificate=true;"
+}
