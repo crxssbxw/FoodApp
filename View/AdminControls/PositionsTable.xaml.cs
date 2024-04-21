@@ -51,6 +51,8 @@ namespace FoodApp.View.AdminControls
                 if (edit.ShowDialog() == true)
                 {
                     positionViewModel.EditPosition(current, current.Id);
+                    lvPositions.ItemsSource = null;
+                    lvPositions.ItemsSource = positionViewModel.Positions;
                 }
             }
             else
